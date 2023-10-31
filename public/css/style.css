@@ -8,7 +8,7 @@ body {
 
 .container {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: auto;
     padding: 20px;
 }
 
@@ -17,6 +17,7 @@ nav {
     background-color: #333;
     color: #fff;
     text-align: center;
+    padding: 10px;
 }
 
 ul{
@@ -28,6 +29,8 @@ ul{
 nav ul {
     list-style: none;
     padding: 0;
+    /* align-items: end; */
+    justify-content: end;
 }
 
 nav li {
@@ -63,9 +66,11 @@ nav a:hover {
 }
 
 .slider img {
-    max-width: 100%;
-    height: auto;
+    object-fit: cover;
+    min-width: 100%;
+    max-height: 70vh; /* Set a maximum height to prevent excessive stretching */
 }
+
 
 .slider-button {
     position: absolute;
@@ -151,6 +156,35 @@ img{
     /* min-width: 100px; */
     max-width: 300px;
 }
+
+/* Style the dropdown menus */
+.filter-group select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  color: #333;
+  font-size: 16px;
+}
+
+/* Style the "Reset" button */
+button[type="reset"] {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+button[type="reset"]:hover {
+  background-color: #555;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     #inventory-container {

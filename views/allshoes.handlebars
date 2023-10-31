@@ -13,7 +13,7 @@
   <div id="slider">
     <!-- Add your slider content here -->
     <div class="slider">
-        <div class="slide"><img src="https://thefoschini.vtexassets.com/arquivos/ids/94207776-1200-1200?v=638340095178270000&width=1200&height=1200&aspect=true" alt="Slide 1"></div>
+        <div class="slide"><img src="/css/newBalance.jpeg" alt="Slide 1"></div>
         <div class="slide"><img src="https://thefoschini.vtexassets.com/arquivos/ids/94654632-1200-1200?v=638342884250100000&width=1200&height=1200&aspect=true" alt="Slide 2"></div>
         <div class="slide"><img src="https://thefoschini.vtexassets.com/arquivos/ids/94835030-1200-1200?v=638343157582270000&width=1200&height=1200&aspect=true" alt="Slide 3"></div>
     </div>
@@ -26,7 +26,7 @@
   <!-- Sidebar for Filtering Inventory -->
   <div id="sidebar">
     <!-- Add filtering options here (e.g., brand, size, color) -->
-      <div class="filter-group">
+    <div class="filter-group">
       <label for="brand">Brand:</label>
       <select id="brand" name="brand">
         <option value="all">All Brands</option>
@@ -37,24 +37,27 @@
     </div>
     <div class="filter-group">
       <label for="size">Size:</label>
-      <input type="checkbox" id="size-small" name="size" value="small">
-      <label for="size-small">Small</label>
-      <input type="checkbox" id="size-medium" name="size" value="medium">
-      <label for="size-medium">Medium</label>
-      <input type="checkbox" id="size-large" name="size" value="large">
-      <label for="size-large">Large</label>
-      <!-- Add more size options as needed -->
+      <select id="size" name="size">
+        <option value="all">All Sizes</option>
+        <option value="small">Small</option>
+        <option value="medium">Medium</option>
+        <option value="large">Large</option>
+        <!-- Add more size options as needed -->
+      </select>
     </div>
     <div class="filter-group">
       <label for="color">Color:</label>
-      <input type="checkbox" id="color-red" name="color" value="red">
-      <label for="color-red">Red</label>
-      <input type="checkbox" id="color-blue" name="color" value="blue">
-      <label for="color-blue">Blue</label>
-      <!-- Add more color options as needed -->
+      <select id="color" name="color">
+        <option value="all">All Colors</option>
+        <option value="red">Red</option>
+        <option value="blue">Blue</option>
+        <!-- Add more color options as needed -->
+      </select>
     </div>
     <button type="reset">Reset</button>
-</div>
+  </div>
+{{!-- </div> --}}
+
 
   <!-- Inventory Container -->
 <div id="inventory-container">
