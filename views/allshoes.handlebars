@@ -1,0 +1,73 @@
+<!-- Navigation Bar -->
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Login</a></li>
+      <li><a href="#">Sign Up</a></li>
+      <li><a href="#">Cart</a></li>
+    </ul>
+  </nav>
+
+  <!-- Slider -->
+  <div id="slider">
+    <!-- Add your slider content here -->
+    <div class="slider">
+        <div class="slide"><img src="image1.jpg" alt="Slide 1"></div>
+        <div class="slide"><img src="image2.jpg" alt="Slide 2"></div>
+        <div class="slide"><img src="image3.jpg" alt="Slide 3"></div>
+    </div>
+    <button id="prev-slide" class="slider-button">&#9665;</button>
+    <button id="next-slide" class="slider-button">&#9655;</button>
+  </div>
+
+  <!-- Sidebar for Filtering Inventory -->
+  <div id="sidebar">
+    <!-- Add filtering options here (e.g., brand, size, color) -->
+      <div class="filter-group">
+      <label for="brand">Brand:</label>
+      <select id="brand" name="brand">
+        <option value="all">All Brands</option>
+        <option value="nike">Nike</option>
+        <option value="adidas">Adidas</option>
+        <!-- Add more brand options as needed -->
+      </select>
+    </div>
+    <div class="filter-group">
+      <label for="size">Size:</label>
+      <input type="checkbox" id="size-small" name="size" value="small">
+      <label for="size-small">Small</label>
+      <input type="checkbox" id="size-medium" name="size" value="medium">
+      <label for="size-medium">Medium</label>
+      <input type="checkbox" id="size-large" name="size" value="large">
+      <label for="size-large">Large</label>
+      <!-- Add more size options as needed -->
+    </div>
+    <div class="filter-group">
+      <label for="color">Color:</label>
+      <input type="checkbox" id="color-red" name="color" value="red">
+      <label for="color-red">Red</label>
+      <input type="checkbox" id="color-blue" name="color" value="blue">
+      <label for="color-blue">Blue</label>
+      <!-- Add more color options as needed -->
+    </div>
+    <button type="reset">Reset</button>
+
+  <!-- Inventory Container -->
+  <div id="inventory-container">
+    <!-- Handlebars template for inventory items goes here -->
+    <ul>
+    {{#each inventory}}
+      <li>
+        <div class="inventory-item">
+          <img src="{{image}}" alt="{{name}}" class="inventory-item-image">
+          <div class="inventory-item-details">
+            <h3>{{name}}</h3>
+            <p>Description: {{description}}</p>
+            <p>Price: ${{price}}</p>
+            <!-- Add more fields for shoe details (e.g., brand, size, color, etc.) as needed -->
+          </div>
+        </div>
+      </li>
+    {{/each}}
+  </ul>
+  </div>
