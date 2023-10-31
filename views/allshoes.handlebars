@@ -1,10 +1,11 @@
+ <form action="/" method="get">
 <!-- Navigation Bar -->
   <nav>
     <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Login</a></li>
-      <li><a href="#">Sign Up</a></li>
-      <li><a href="#">Cart</a></li>
+      <li><a href="/">Home</a></li>
+      <li><a href="/login">Login</a></li>
+      <li><a href="/signup">Sign Up</a></li>
+      <li><a href="/cart">Cart</a></li>
     </ul>
   </nav>
 
@@ -12,14 +13,16 @@
   <div id="slider">
     <!-- Add your slider content here -->
     <div class="slider">
-        <div class="slide"><img src="image1.jpg" alt="Slide 1"></div>
-        <div class="slide"><img src="image2.jpg" alt="Slide 2"></div>
-        <div class="slide"><img src="image3.jpg" alt="Slide 3"></div>
+        <div class="slide"><img src="https://thefoschini.vtexassets.com/arquivos/ids/94207776-1200-1200?v=638340095178270000&width=1200&height=1200&aspect=true" alt="Slide 1"></div>
+        <div class="slide"><img src="https://thefoschini.vtexassets.com/arquivos/ids/94654632-1200-1200?v=638342884250100000&width=1200&height=1200&aspect=true" alt="Slide 2"></div>
+        <div class="slide"><img src="https://thefoschini.vtexassets.com/arquivos/ids/94835030-1200-1200?v=638343157582270000&width=1200&height=1200&aspect=true" alt="Slide 3"></div>
     </div>
     <button id="prev-slide" class="slider-button">&#9665;</button>
     <button id="next-slide" class="slider-button">&#9655;</button>
   </div>
 
+
+<div class="side-n-shoes">
   <!-- Sidebar for Filtering Inventory -->
   <div id="sidebar">
     <!-- Add filtering options here (e.g., brand, size, color) -->
@@ -51,23 +54,53 @@
       <!-- Add more color options as needed -->
     </div>
     <button type="reset">Reset</button>
+</div>
 
   <!-- Inventory Container -->
-  <div id="inventory-container">
+<div id="inventory-container">
     <!-- Handlebars template for inventory items goes here -->
-    <ul>
-    {{#each inventory}}
-      <li>
+  {{!-- <ul> --}}
+    {{!-- {{#each inventory}} --}}
+      {{!-- <li> --}}
         <div class="inventory-item">
-          <img src="{{image}}" alt="{{name}}" class="inventory-item-image">
+          <img src="/css/asics.jpeg" alt="{{name}}" class="inventory-item-image">
           <div class="inventory-item-details">
-            <h3>{{name}}</h3>
-            <p>Description: {{description}}</p>
-            <p>Price: ${{price}}</p>
+            <h3>Asics</h3>
+            <p>Description: Beige</p>
+            <p>Price: R2 600</p>
             <!-- Add more fields for shoe details (e.g., brand, size, color, etc.) as needed -->
           </div>
         </div>
-      </li>
-    {{/each}}
-  </ul>
-  </div>
+      {{!-- </li> --}}
+
+      {{!-- <li> --}}
+        <div class="inventory-item">
+          <img src="/css/puma.jpeg" alt="{{name}}" class="inventory-item-image">
+          <div class="inventory-item-details">
+            <h3>New Balance</h3>
+            <p>Description: Grey</p>
+            <p>Price: R3 100</p>
+            <!-- Add more fields for shoe details (e.g., brand, size, color, etc.) as needed -->
+          </div>
+        </div>
+      {{!-- </li> --}}
+      
+    {{!-- <li> --}}
+      <div class="inventory-item">
+          <img src="/css/puma.jpeg" alt="{{name}}" class="inventory-item-image">
+          <div class="inventory-item-details">
+            <h3>Puma</h3>
+            <p>Description: Beige</p>
+            <p>Price: R3 200</p>
+            <!-- Add more fields for shoe details (e.g., brand, size, color, etc.) as needed -->
+          </div>
+      </div>
+      {{!-- {{/each}} --}}
+    {{!-- </li>      --}}
+  {{!-- </ul> --}}
+</div>
+
+</div>
+
+  </form>
+  

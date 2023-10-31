@@ -1,5 +1,6 @@
 <div class="container">
 <h2>Your Shopping Cart</h2>
+<form action="/cart" method="post"> 
 {{#if items.length}}
     <ul>
       {{#each items}}
@@ -20,3 +21,4 @@
     <p>Your cart is empty.</p>
   {{/if}}
 </div>
+</form>
