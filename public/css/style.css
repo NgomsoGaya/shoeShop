@@ -188,6 +188,68 @@ button[type="reset"]:hover {
   background-color: #555;
 }
 
+.container {
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+/* form {
+    margin-top: 20px;
+} */
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.signup-link {
+    margin-top: 20px;
+}
+
+.loginFootMsg {
+    font-size: 14px;
+}
+
+.loginFootMsg a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.loginFootMsg a:hover {
+    text-decoration: underline;
+}
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
     #inventory-container {
