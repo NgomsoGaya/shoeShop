@@ -63,6 +63,8 @@ app.get("/cart", mainrender.cart)
 
 app.get("/admin", mainrender.admin)
 
+app.get("/api/shoes", mainrender.allShoes);
+
 const PORT = process.env.PORT || 3033;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

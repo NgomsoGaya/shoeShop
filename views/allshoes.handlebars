@@ -64,22 +64,24 @@
 <div id="inventory-container">
     <!-- Handlebars template for inventory items goes here -->
   {{!-- <ul> --}}
-    {{!-- {{#each inventory}} --}}
+    {{#each inventory}}
       {{!-- <li> --}}
         <div class="inventory-item">
-          <img src="/css/asics.jpeg" alt="{{name}}" class="inventory-item-image">
+          <img src="{{}}" alt="{{name}}" class="inventory-item-image">
           <div class="inventory-item-details">
-            <h3>Asics</h3>
-            <p>Description: Beige</p>
-            <p>Price: R2 600</p>
+            <h3>{{}}</h3>
+            <p>{{}}</p>
+            <p>{{}}</p>
+            <p>{{}}</p>
             <!-- Add more fields for shoe details (e.g., brand, size, color, etc.) as needed -->
           </div>
           <button type="button">Add to cart</button>
         </div>
+    {{/each}}
       {{!-- </li> --}}
 
       {{!-- <li> --}}
-        <div class="inventory-item">
+        {{!-- <div class="inventory-item">
           <img src="/css/puma.jpeg" alt="{{name}}" class="inventory-item-image">
           <div class="inventory-item-details">
             <h3>New Balance</h3>
@@ -88,11 +90,11 @@
             <!-- Add more fields for shoe details (e.g., brand, size, color, etc.) as needed -->
           </div>
           <button type="button">Add to cart</button>
-        </div>
+        </div> --}}
       {{!-- </li> --}}
       
     {{!-- <li> --}}
-      <div class="inventory-item">
+      {{!-- <div class="inventory-item">
           <img src="/css/puma.jpeg" alt="{{name}}" class="inventory-item-image">
           <div class="inventory-item-details">
             <h3>Puma</h3>
@@ -101,8 +103,7 @@
             <!-- Add more fields for shoe details (e.g., brand, size, color, etc.) as needed -->
           </div>
           <button type="button">Add to cart</button>
-      </div>
-      {{!-- {{/each}} --}}
+      </div> --}}
     {{!-- </li>      --}}
   {{!-- </ul> --}}
 </div>
