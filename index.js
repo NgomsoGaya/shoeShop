@@ -9,11 +9,11 @@ import pgPromise from "pg-promise";
 import render from "./renderLogic(API)/render.js";
 
 // //setting up the PostgreSQL database connection using the pg-promise library and using an environment variable DATABASE_URL for the connection string.
-// const connectionString = process.env.DATABASE_URL;
-// const pgp = pgPromise();
-// const db = pgp(connectionString);
+const connectionString = process.env.DATABASE_URL;
+const pgp = pgPromise();
+const db = pgp(connectionString);
 
-// export { db, connectionString };
+export { db, connectionString };
 
 //setting up the Express application with Handlebars as the view engine. Handlebars templates are expected to be located in the views directory, and i've also configured partialsDir and layoutsDir.
 const handlebarSetup = exphbs.engine({
