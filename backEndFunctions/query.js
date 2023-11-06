@@ -4,8 +4,17 @@ export default function query(db){
         return shoes;
     }
 
+  async function filterByBrand(brand) {
+    const brandFilteredShoes = await db.manyOrNone(
+      "SELECT * FROM shoes WHERE brand = $1",
+      [brand]
+    );
+
+    return brandFilteredShoes || [];
+  }
 
     return {
       showAllShoes,
+      filterByBrand,
     };
 }

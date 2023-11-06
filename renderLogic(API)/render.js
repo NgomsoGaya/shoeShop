@@ -2,7 +2,7 @@ import pgPromise from "pg-promise";
 import "dotenv/config";
 import query from "../backEndFunctions/query.js";
 import axios from "axios";
-import { response } from "express";
+;
 
 const connectionString = process.env.DATABASE_URL;
 const pgp = pgPromise();
@@ -36,32 +36,53 @@ export default function render() {
       next(error)
     }
   }
-//const response = ''
+
+  async function filterByBrandAPI(req, res, next) {
+    try {
+
+      const brand = req.params.brandname
+      const data = await queryFunction.filterByBrand(brand)
+      
+      res.json(data)
+     // console.log(data);
+    } catch (error) {
+      next(error)
+    }
+  }
+
   async function displayAllShoes() {
     try {
       const response = await axios.get('http://localhost:3033/api/shoes')
-      // console.log(response);
+      
       return response.data
       
     } catch (error) {
-      // next(error)
       throw error
     }
-    // console.log(response.data);
+  }
+  async function displayFilteredByBrand(brand) {
+    try {
+
+      const response = await axios.get(`http://localhost:3033/api/shoes/${brand}`)
+
+      return response.data
+
+    } catch (error) {
+      throw error
+    }
   }
   
 async function allShoes(req, res, next) {
   try {
-      //displayAllShoes()
-      //const data = await queryFunction.showAllShoes();
+    const brand = req.params.brandname
     const response = await displayAllShoes()
-    // console.log(response);
-      res.render("allshoes", {response} );
+    const sameBrand = await displayFilteredByBrand(brand)
+    
+      res.render("allshoes", { response, sameBrand});
     } catch (error) {
       next(error);
     }
 }
-  //  console.log(response);
 
   async function cart(req, res, next) {
     try {
@@ -86,5 +107,7 @@ async function allShoes(req, res, next) {
     admin,
     getAllAPIShoes,
     displayAllShoes,
+    filterByBrandAPI,
+    displayFilteredByBrand,
   };
 }

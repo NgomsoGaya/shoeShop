@@ -54,20 +54,14 @@ app.use(
 const mainrender = render()
 
 app.get("/signup", mainrender.signUp)
-
 app.get("/login", mainrender.login)
-
 app.get("/", mainrender.allShoes)
-//app.get("/", mainrender.displayAllShoes);
-
-//const shoes = mainrender.displayAllShoes();
-//console.log(shoes);
 
 app.get("/cart", mainrender.cart)
-
 app.get("/admin", mainrender.admin)
 
 app.get("/api/shoes", mainrender.getAllAPIShoes);
+app.get("/api/shoes/:brandname", mainrender.filterByBrandAPI)
 
 const PORT = process.env.PORT || 3033;
 app.listen(PORT, () => {

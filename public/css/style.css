@@ -96,8 +96,6 @@ nav a:hover {
 #sidebar {
     background-color: #f5f5f5;
     padding: 20px;
-    /* border: 1px solid #333; */
-    /* max-width: 20%; */
     min-width: 15%;
     margin-left: 40px;
 }
@@ -123,7 +121,7 @@ nav a:hover {
   justify-content: space-between; /* Adjust as needed for spacing */
   max-width: 100%; /* Make sure it fits the container width */
   box-sizing: border-box;
-  margin-right: 40px;
+  margin-right: 2%;
 }
 
 .side-n-shoes{
@@ -201,7 +199,22 @@ button[type="reset"] {
   transition: background-color 0.3s;
 }
 
+button[type="filter"] {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
 button[type="reset"]:hover {
+  background-color: #555;
+}
+
+button[type="filter"]:hover {
   background-color: #555;
 }
 
@@ -267,6 +280,7 @@ input[type="submit"]:hover {
 @media (max-width: 768px) {
     #inventory-container {
         flex-direction: column;
+        /* margin-right: 2.5rem; */
     }
 
     .inventory-item {
