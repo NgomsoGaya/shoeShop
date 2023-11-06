@@ -55,7 +55,7 @@ async function allShoes(req, res, next) {
       //displayAllShoes()
       //const data = await queryFunction.showAllShoes();
     const response = await displayAllShoes()
-    console.log(response);
+    // console.log(response);
       res.render("allshoes", {response} );
     } catch (error) {
       next(error);
