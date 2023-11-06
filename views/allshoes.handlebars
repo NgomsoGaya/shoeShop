@@ -64,15 +64,16 @@
 <div id="inventory-container">
     <!-- Handlebars template for inventory items goes here -->
   {{!-- <ul> --}}
-    {{#each inventory}}
+    {{#each response}}
       {{!-- <li> --}}
         <div class="inventory-item">
-          <img src="{{}}" alt="{{name}}" class="inventory-item-image">
+          <img src="{{this.image}}" alt="{{this.name}}" class="inventory-item-image">
           <div class="inventory-item-details">
-            <h3>{{}}</h3>
-            <p>{{}}</p>
-            <p>{{}}</p>
-            <p>{{}}</p>
+            <h3>{{this.name}}</h3>
+            <p>{{this.brand}}</p>
+            <p>{{this.color}}</p>
+            <p>{{this.price}}</p>
+            <p>{{this.instock}}</p>
             <!-- Add more fields for shoe details (e.g., brand, size, color, etc.) as needed -->
           </div>
           <button type="button">Add to cart</button>
