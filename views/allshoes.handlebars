@@ -21,7 +21,8 @@
     <button id="next-slide" class="slider-button">&#9655;</button>
   </div>
 
-
+  
+<form action="/filter" method="POST">
 <div class="side-n-shoes">
   <!-- Sidebar for Filtering Inventory -->
   <div id="sidebar">
@@ -29,11 +30,11 @@
     <div class="filter-group">
       <label for="brand">Brand:</label>
       <select id="brand" name="brand">
-        <option value="all" name="all">All Brands</option>
-        <option value="Nike" name="Nike">Nike</option>
-        <option value="Adidas" name="Adidas">Adidas</option>
-        <option value="Converse" name="Converse">Converse</option>
-        <option value="New Balance" name="New Balance">New Balance</option>
+        <option value="all">All Brands</option>
+        <option value="Nike">Nike</option>
+        <option value="Adidas">Adidas</option>
+        <option value="Converse">Converse</option>
+        <option value="New Balance">New Balance</option>
         <!-- Add more brand options as needed -->
       </select>
     </div>
@@ -44,7 +45,7 @@
         <option value="5">5</option>
         <option value="6">6</option>
         <option value="7">7</option>
-         <option value="8">8</option>
+        <option value="8">8</option>
         <option value="9">9</option>
         <option value="10">10</option>
         <!-- Add more size options as needed -->
@@ -64,8 +65,10 @@
   
       </select>
     </div>
-    <button type="filter">Filter</button>
-    <button type="reset">Reset</button>
+    <button type="submit" class="filter">Filter</button>
+    </form>
+
+      <button type="reset">Reset</button>
   </div>
 {{!-- </div> --}}
 

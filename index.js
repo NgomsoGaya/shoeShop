@@ -56,6 +56,7 @@ const mainrender = render()
 app.get("/signup", mainrender.signUp)
 app.get("/login", mainrender.login)
 app.get("/", mainrender.allShoes)
+app.post("/filter", mainrender.filterShoes);
 
 app.get("/cart", mainrender.cart)
 app.get("/admin", mainrender.admin)

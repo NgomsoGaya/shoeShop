@@ -2,12 +2,12 @@ import pgPromise from "pg-promise";
 import "dotenv/config";
 import query from "../backEndFunctions/query.js";
 import axios from "axios";
-;
+
 
 const connectionString = process.env.DATABASE_URL;
 const pgp = pgPromise();
 const db = pgp(connectionString);
-const queryFunction = query(db)
+const queryFunction = query(db);
 
 export default function render() {
   //DATA FROM QUERIES SENT AS JSON
@@ -98,6 +98,57 @@ export default function render() {
   //------END-POINTS ACCESSING THE JSON -------
 
   //RENDERING THE PAGES /& DATA FROM END-POINTS
+  async function allShoes(req, res, next) {
+    try {
+      const response = await displayAllShoes();
+
+      res.render("allshoes", { response});
+    } catch (error) {
+      next(error);
+    }
+  }
+  // async function brandDisplay(req, res, next) {
+  //   const brand = req.body.brand;
+  //   const response = await displayFilteredByBrand(brand);
+
+  //   res.render("allshoes", { response });
+  //   next()
+  // }
+  // async function sizeDisplay(req, res, next) {
+  //   const size = req.body.size;
+  //   const response = await displayFilteredBySize(size)
+
+  //   res.render("allshoes", { response });
+  //   next()
+  // }
+  // async function colorDisplay(req, res, next) {
+  //   const color = req.body.color;
+  //   const response = await displayFilteredByColor(color);
+
+  //   res.render("allshoes", { response })
+  //   next()
+  // }
+  async function filterShoes(req, res, next) {
+    try {
+      const brand = req.body.brand
+      const size = req.body.size
+      const color = req.body.color;
+      
+      if (brand !== "all") {
+        const response = await displayFilteredByBrand(brand);
+        res.render("allshoes", { response });
+      } else if (size !== "all") {
+        const response = await displayFilteredBySize(size);
+        res.render("allshoes", { response });
+      } else if (color !== "all") {
+        const response = await displayFilteredByColor(color);
+        res.render("allshoes", { response })
+      }
+    } catch (error) {
+      next(error)
+    }
+  }
+
   async function signUp(req, res, next) {
     try {
       res.render("signup");
@@ -112,19 +163,6 @@ export default function render() {
       next(error);
     }
   }
-  async function allShoes(req, res, next) {
-    try {
-      const brand = req.params.brandname;
-      const response = await displayAllShoes();
-
-     // const sameBrand = await displayFilteredByBrand(brand);
-
-      res.render("allshoes", { response});
-    } catch (error) {
-      next(error);
-    }
-  }
-
   async function cart(req, res, next) {
     try {
       res.render("cart");
@@ -155,5 +193,6 @@ export default function render() {
     displayFilteredBySize,
     filterByColorAPI,
     displayFilteredByColor,
+    filterShoes,
   };
 }
