@@ -1,4 +1,4 @@
- <form action="/" method="get">
+ {{!-- <form action="/" method="get"> --}}
 <!-- Navigation Bar -->
   <nav>
     <ul>
@@ -41,9 +41,12 @@
       <label for="size">Size:</label>
       <select id="size" name="size">
         <option value="all">All Sizes</option>
-        <option value="small">Small</option>
-        <option value="medium">Medium</option>
-        <option value="large">Large</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+         <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
         <!-- Add more size options as needed -->
       </select>
     </div>
@@ -51,8 +54,12 @@
       <label for="color">Color:</label>
       <select id="color" name="color">
         <option value="all">All Colors</option>
-        <option value="red">Red</option>
-        <option value="blue">Blue</option>
+        <option value="Black">Black</option>
+        <option value="White">White</option>
+        <option value="Green">Green</option>
+        <option value="Gray">Gray</option>
+        <option value="Brown">Brown</option>
+        <option value="Blue">Blue</option>
         <!-- Add more color options as needed -->
   
       </select>
@@ -72,11 +79,11 @@
         <div class="inventory-item">
           <img src="{{this.image}}" alt="{{this.name}}" class="inventory-item-image">
           <div class="inventory-item-details">
-            <h3>{{this.name}}</h3>
-            <p>{{this.brand}}</p>
-            <p>{{this.color}}</p>
-            <p>{{this.price}}</p>
-            <p>{{this.instock}}</p>
+            <h3>{{this.brand}} {{this.name}}</h3>
+            <p>R{{this.price}}</p>
+            <p>Size(s): {{size}}</p>
+            <p>Color(s): {{this.color}}</p>
+            <p>Instock: {{this.instock}}</p>
             <!-- Add more fields for shoe details (e.g., brand, size, color, etc.) as needed -->
           </div>
           <button type="button">Add to cart</button>
@@ -85,5 +92,5 @@
   
 </div>
 </div>
-</form>
+{{!-- </form> --}}
   

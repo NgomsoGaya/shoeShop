@@ -61,7 +61,10 @@ app.get("/cart", mainrender.cart)
 app.get("/admin", mainrender.admin)
 
 app.get("/api/shoes", mainrender.getAllAPIShoes);
-app.get("/api/shoes/:brandname", mainrender.filterByBrandAPI)
+app.get("/api/shoes/brand/:brandname", mainrender.filterByBrandAPI)
+app.get("/api/shoes/size/:shoesize", mainrender.filterBySizeAPI)
+app.get("/api/shoes/color/:shoecolor", mainrender.filterByColorAPI)
+
 
 const PORT = process.env.PORT || 3033;
 app.listen(PORT, () => {
