@@ -65,7 +65,7 @@ export default function render() {
   async function displayFilteredByBrand(brand) {
     try {
       const response = await axios.get(
-        `http://localhost:3033/api/shoes/brand/${brand}`
+        `https://shoeshop-ess4.onrender.com/api/shoes/brand/${brand}`
       );
 
       return response.data;
@@ -76,8 +76,8 @@ export default function render() {
   async function displayFilteredBySize(size) {
     try {
       const response = await axios.get(
-        `http://localhost:3033/api/shoes/size/${size}`
-      )
+        `https://shoeshop-ess4.onrender.com/api/shoes/size/${size}`
+      );
 
       return response.data
     } catch (error) {
@@ -87,8 +87,8 @@ export default function render() {
   async function displayFilteredByColor(color) {
     try {
       const response = await axios.get(
-        `http://localhost:3033/api/shoes/color/${color}`
-      )
+        `https://shoeshop-ess4.onrender.com/api/shoes/color/${color}`
+      );
 
       return response.data
     } catch (error) {
