@@ -20,6 +20,19 @@ export default function render() {
       next(error);
     }
   }
+  async function filterByBrandColorSizeAPI(req, res, next) { 
+    try {
+      const brand = req.params.brandname
+      const color = req.params.color
+      const size = req.params.size
+
+      const data = await queryFunction.filterByBrandColorSize(brand, color, size);
+        
+      res.json(data)
+      } catch (error) {
+        next(error)
+      }
+  }
   async function filterByBrandAPI(req, res, next) {
     try {
       const brand = req.params.brandname;
@@ -60,6 +73,17 @@ export default function render() {
       return response.data;
     } catch (error) {
       throw error;
+    }
+  }
+  async function displayFilteredByBrandColorSize(brand, color, size) {
+    try {
+      const response = await axios.get(
+        `https://shoeshop-ess4.onrender.com/api/shoes/brand/${brand}/color/${color}/size/${size}`
+      );
+      
+      return response.data
+    } catch (error) {
+      throw error
     }
   }
   async function displayFilteredByBrand(brand) {
@@ -107,34 +131,16 @@ export default function render() {
       next(error);
     }
   }
-  // async function brandDisplay(req, res, next) {
-  //   const brand = req.body.brand;
-  //   const response = await displayFilteredByBrand(brand);
-
-  //   res.render("allshoes", { response });
-  //   next()
-  // }
-  // async function sizeDisplay(req, res, next) {
-  //   const size = req.body.size;
-  //   const response = await displayFilteredBySize(size)
-
-  //   res.render("allshoes", { response });
-  //   next()
-  // }
-  // async function colorDisplay(req, res, next) {
-  //   const color = req.body.color;
-  //   const response = await displayFilteredByColor(color);
-
-  //   res.render("allshoes", { response })
-  //   next()
-  // }
   async function filterShoes(req, res, next) {
     try {
       const brand = req.body.brand
       const size = req.body.size
       const color = req.body.color;
       
-      if (brand !== "all") {
+      if (brand !== "all" && size !== "all" && color !== "all") {
+        const response = await displayFilteredByBrandColorSize(brand, color, size)
+        res.render("allshoes", { response });
+      }else if (brand !== "all") {
         const response = await displayFilteredByBrand(brand);
         res.render("allshoes", { response });
       } else if (size !== "all") {
@@ -187,6 +193,8 @@ export default function render() {
     admin,
     getAllAPIShoes,
     displayAllShoes,
+    filterByBrandColorSizeAPI,
+    displayFilteredByBrandColorSize,
     filterByBrandAPI,
     displayFilteredByBrand,
     filterBySizeAPI,

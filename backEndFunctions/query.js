@@ -4,6 +4,24 @@ export default function query(db){
         return shoes;
     }
 
+  async function filterByBrandColorSize(brand, color, size) {
+    const BCSfilteredShoes = await db.manyOrNone("SELECT * FROM shoes WHERE (brand, color, size) = $1, $2, $3", [brand, color, size])
+
+    return BCSfilteredShoes;
+  }
+
+  async function filterByBrandColor(brand, color) {
+    const BCfilteredshoes = await db.manyOrNone("SELECT * FROM shoes WHERE (brand, color, size) = $1, $2", [brand, color])
+    
+    return BCfilteredshoes;
+  }
+
+  async function filterByColorSize(color, size) {
+    const CSfilteredshoes = await db.manyOrNone("SELECT * FROM shoes WHERE (color, size) = $1, $2", [color, size])
+
+    return CSfilteredshoes;
+  }
+
   async function filterByBrand(brand) {
     const brandFilteredShoes = await db.manyOrNone(
       "SELECT * FROM shoes WHERE brand = $1",
@@ -14,10 +32,8 @@ export default function query(db){
   }
 
   async function filterBySize(size) {
-    const allShoes = await db.manyOrNone("SELECT * FROM shoes");
-    const sizeFilteredShoes = allShoes.filter((shoe) =>
-      shoe.size.includes(size)
-    );
+    const sizeFilteredShoes = await db.manyOrNone("SELECT * FROM shoes WHERE size = $1", [size]);
+    
     return sizeFilteredShoes;
   }
 
@@ -32,6 +48,9 @@ export default function query(db){
 
     return {
       showAllShoes,
+      filterByBrandColorSize,
+      filterByBrandColor,
+      filterByColorSize,
       filterByBrand,
       filterBySize,
       filterByColor,
