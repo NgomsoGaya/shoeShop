@@ -23,8 +23,8 @@ export default function render() {
   async function filterByBrandColorSizeAPI(req, res, next) { 
     try {
       const brand = req.params.brandname
-      const color = req.params.color
-      const size = req.params.size
+      const color = req.params.shoecolor
+      const size = req.params.shoesize
 
       const data = await queryFunction.filterByBrandColorSize(brand, color, size);
         
@@ -133,12 +133,15 @@ export default function render() {
   }
   async function filterShoes(req, res, next) {
     try {
-      const brand = req.body.brand
-      const size = req.body.size
+      const brand = req.body.brand;
+      const size = req.body.size;
       const color = req.body.color;
       
       if (brand !== "all" && size !== "all" && color !== "all") {
-        const response = await displayFilteredByBrandColorSize(brand, color, size)
+        console.log("test")
+        console.log(brand, color, size)
+        const response = await displayFilteredByBrandColorSize(brand, color, size);
+        console.log(response);
         res.render("allshoes", { response });
       }else if (brand !== "all") {
         const response = await displayFilteredByBrand(brand);

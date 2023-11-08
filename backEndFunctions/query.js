@@ -5,7 +5,7 @@ export default function query(db){
     }
 
   async function filterByBrandColorSize(brand, color, size) {
-    const BCSfilteredShoes = await db.manyOrNone("SELECT * FROM shoes WHERE (brand, color, size) = $1, $2, $3", [brand, color, size])
+    const BCSfilteredShoes = await db.manyOrNone("SELECT * FROM shoes WHERE brand = $1 AND color = $2 AND size = $3", [brand, color, size])
 
     return BCSfilteredShoes;
   }
