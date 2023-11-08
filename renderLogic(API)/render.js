@@ -55,7 +55,7 @@ export default function render() {
   //END-POINTS ACCESSING THE JSON
   async function displayAllShoes() {
     try {
-      const response = await axios.get("http://localhost:3033/api/shoes");
+      const response = await axios.get("https://shoeshop-ess4.onrender.com/api/shoes");
 
       return response.data;
     } catch (error) {
