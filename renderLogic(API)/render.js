@@ -60,7 +60,7 @@ export default function render() {
   async function filterByColorSizeAPI(req, res, next) {
     try {
        const color = req.params.shoecolor;
-      const size = req.params.shoesize;
+       const size = req.params.shoesize;
       
       const data = await queryFunction.filterByColorSize(color, size)
 
@@ -145,11 +145,16 @@ export default function render() {
     }
   }
   async function displayFilteredByColorSize(color, size) {
-    const response = await axios.get(
+    try {
+       const response = await axios.get(
       `https://shoeshop-ess4.onrender.com/api/shoes/color/${color}/size/${size}`
     );
     
     return response.data
+    } catch (error) {
+      throw error
+    }
+   
   }
   async function displayFilteredByBrand(brand) {
     try {
