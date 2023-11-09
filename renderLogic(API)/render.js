@@ -57,7 +57,7 @@ export default function render() {
       next(error)
     }
   }
-  async function filterByColorSizeAPI(res, res, next) {
+  async function filterByColorSizeAPI(req, res, next) {
     try {
        const color = req.params.shoecolor;
       const size = req.params.shoesize;
