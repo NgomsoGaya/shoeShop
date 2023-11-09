@@ -33,6 +33,42 @@ export default function render() {
         next(error)
       }
   }
+  async function filterByBrandColorAPI(req, res, next) {
+    try {
+       const brand = req.params.brandname;
+       const color = req.params.shoecolor;
+      
+      const data = await queryFunction.filterByBrandColor(brand, color);
+      
+      res.json(data)
+    } catch (error) {
+      next(error)
+    }
+  }
+  async function filterByBrandSizeAPI(req, res, next) {
+    try {
+       const brand = req.params.brandname;
+       const size = req.params.shoesize;
+      
+       const data = await queryFunction.filterByBrandSize(brand, size)
+      
+      res.json(data)
+    } catch (error) {
+      next(error)
+    }
+  }
+  async function filterByColorSizeAPI(res, res, next) {
+    try {
+       const color = req.params.shoecolor;
+      const size = req.params.shoesize;
+      
+      const data = await queryFunction.filterByColorSize(color, size)
+
+      res.json(data)
+    } catch (error) {
+      next(error)
+    }
+  }
   async function filterByBrandAPI(req, res, next) {
     try {
       const brand = req.params.brandname;
@@ -86,6 +122,35 @@ export default function render() {
       throw error
     }
   }
+  async function displayFilteredByBrandSize(brand, size) {
+    try {
+      const response = await axios.get(
+        `https://shoeshop-ess4.onrender.com/api/shoes/brand/${brand}/size/${size}`
+      );
+      
+      return response.data
+    } catch (error) {
+      throw error
+    }
+  }
+  async function displayFilteredByBrandColor(brand, color) {
+    try {
+      const response = await axios.get(
+        `https://shoeshop-ess4.onrender.com/api/shoes/brand/${brand}/color/${color}`
+      );
+      
+      return response.data
+    } catch (error) {
+      throw error
+    }
+  }
+  async function displayFilteredByColorSize(color, size) {
+    const response = await axios.get(
+      `https://shoeshop-ess4.onrender.com/api/shoes/color/${color}/size/${size}`
+    );
+    
+    return response.data
+  }
   async function displayFilteredByBrand(brand) {
     try {
       const response = await axios.get(
@@ -138,12 +203,18 @@ export default function render() {
       const color = req.body.color;
       
       if (brand !== "all" && size !== "all" && color !== "all") {
-        console.log("test")
-        console.log(brand, color, size)
         const response = await displayFilteredByBrandColorSize(brand, color, size);
-        console.log(response);
         res.render("allshoes", { response });
-      }else if (brand !== "all") {
+      } else if (brand !== "all" && color !== "all") {
+        const response = await displayFilteredByBrandColor(brand, color)
+        res.render("allshoes", {response})
+      } else if (brand !== "all" && size !== "all") {
+        const response = await displayFilteredByBrandSize(brand, size)
+        res.render("allshoes", {response})
+      } else if (color !== "all" && size !== "all") {
+        const response = await displayFilteredByColorSize(color, size)
+        res.render("allshoes", {response})
+      } else if (brand !== "all") {
         const response = await displayFilteredByBrand(brand);
         res.render("allshoes", { response });
       } else if (size !== "all") {
@@ -198,6 +269,12 @@ export default function render() {
     displayAllShoes,
     filterByBrandColorSizeAPI,
     displayFilteredByBrandColorSize,
+    filterByBrandColorAPI,
+    displayFilteredByBrandColor,
+    filterByBrandSizeAPI,
+    displayFilteredByBrandSize,
+    filterByColorSizeAPI,
+    displayFilteredByColorSize,
     filterByBrandAPI,
     displayFilteredByBrand,
     filterBySizeAPI,

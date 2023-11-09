@@ -63,6 +63,9 @@ app.get("/admin", mainrender.admin)
 
 app.get("/api/shoes", mainrender.getAllAPIShoes);
 app.get("/api/shoes/brand/:brandname/color/:shoecolor/size/:shoesize", mainrender.filterByBrandColorSizeAPI)
+app.get("/api/shoes/brand/:brandname/color/:shoecolor", mainrender.filterByBrandColorAPI)
+app.get("/api/shoes/color/:shoecolor/size/:shoesize", mainrender.filterByBrandColorSizeAPI)
+app.get("/api/shoes/brand/:brandname/size/:shoesize", mainrender.filterByBrandSizeAPI)
 app.get("/api/shoes/brand/:brandname", mainrender.filterByBrandAPI)
 app.get("/api/shoes/size/:shoesize", mainrender.filterBySizeAPI)
 app.get("/api/shoes/color/:shoecolor", mainrender.filterByColorAPI)
