@@ -241,11 +241,43 @@ export default function render() {
       next(error);
     }
   }
+  async function signUpLogic(req, res, next) {
+    try {
+     let name = req.body.username;
+     let password = req.body.password;
+     let confirm = req.body.confirm_password;
+    
+     const signUpMsg = await queryFunction.signup(name, password, confirm)
+
+      res.render("signup", { signUpMsg });
+   } catch (error) {
+    next(error)
+   }
+ }
+
   async function login(req, res, next) {
     try {
       res.render("login");
     } catch (error) {
       next(error);
+    }
+  }
+
+  async function loginLogic(req, res, next) {
+    try {
+      const username = req.body.username;
+      const password = req.body.password;
+
+      let role = await queryFunction.login(username, password)
+
+      if (username && password && role === 'Client') {
+        res.redirect(`/shop/${username}`)
+      }else if (username && password && role === 'Admin') {
+        res.redirect('/admin')
+      }
+      
+    } catch (error) {
+      next(error)
     }
   }
   async function cart(req, res, next) {
@@ -266,7 +298,9 @@ export default function render() {
 
   return {
     signUp,
+    signUpLogic,
     login,
+    loginLogic,
     allShoes,
     cart,
     admin,

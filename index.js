@@ -8,6 +8,7 @@ import "dotenv/config";
 import pgPromise from "pg-promise";
 import render from "./renderLogic(API)/render.js";
 
+
 // //setting up the PostgreSQL database connection using the pg-promise library and using an environment variable DATABASE_URL for the connection string.
 const connectionString = process.env.DATABASE_URL;
 const pgp = pgPromise();
@@ -54,8 +55,11 @@ app.use(
 const mainrender = render()
 
 app.get("/signup", mainrender.signUp)
+app.post("/signup", mainrender.signUpLogic)
 app.get("/login", mainrender.login)
+app.post("/login", mainrender.loginLogic)
 app.get("/", mainrender.allShoes)
+app.get("/shop/:username", mainrender.allShoes);
 app.post("/filter", mainrender.filterShoes);
 
 app.get("/cart", mainrender.cart)

@@ -1,4 +1,42 @@
-export default function query(db){
+export default function query(db) {
+  async function signup(username, password, confirm) {
+    if (username && password && confirm) {
+      const existingUser = await db.oneOrNone(
+        "SELECT * FROM users WHERE username = $1",
+        username
+      );
+      if (existingUser) {
+        return "Username already exists";
+      } else if (!existingUser) {
+        if (password === confirm) {
+          await db.none(
+          "INSERT INTO users (username, password, role) VALUES ($1, $2, $3)",
+          [username, password, 'Client']
+        );
+        return "Sign-up successful";
+        }
+      }
+    }
+    return "Sign-up failed";
+  }
+
+  async function login(username, password) {
+    let role = null;
+
+    if (username && password) {
+      const user = await db.oneOrNone(
+        "SELECT role FROM users WHERE username = $1 AND password= $2",
+        [username, password]
+      );
+
+      if (user) {
+        role = user.role;
+      }
+    }
+    return role;
+  }
+
+
   async function showAllShoes() {
         const shoes = await db.many("SELECT * FROM shoes")
         return shoes;
@@ -52,7 +90,9 @@ export default function query(db){
     return colorFilteredShoes;
   }
 
-    return {
+  return {
+      signup,
+      login,
       showAllShoes,
       filterByBrandColorSize,
       filterByBrandColor,
