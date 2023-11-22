@@ -99,6 +99,26 @@ export default function render() {
       next(error);
     }
   }
+
+  async function getCartAPI(req, res, next) {
+    try {
+      const username = req.body.username;
+      const userId = await db.manyOrNone(
+        "SELECT id FROM users WHERE username = $1",
+        [username]
+      );
+      const shoeIdRef = req.body.shoeId
+      const shoeId = shoeIdRef.value
+      const quantity = 1
+
+      const data = await queryFunction.addToCart(userId, shoeId, quantity)
+
+      res.json(data)
+    } catch (error) {
+      next(error)
+    }
+   }
+
   //----DATA FROM QUERIES SENT AS JSON------
 
   //END-POINTS ACCESSING THE JSON
@@ -189,13 +209,22 @@ export default function render() {
       throw error
     }
   }
+  async function displayCart() {
+    try {
+      const response = await axios.get(`https://shoeshop-ess4.onrender.com/api/cart`);
+      
+      return response.data
+    } catch (error) {
+      throw error
+    }
+  }
   //------END-POINTS ACCESSING THE JSON -------
 
   //RENDERING THE PAGES /& DATA FROM END-POINTS
   async function allShoes(req, res, next) {
     try {
       const response = await displayAllShoes();
-
+      
       res.render("allshoes", { response});
     } catch (error) {
       next(error);
@@ -209,6 +238,7 @@ export default function render() {
       
       if (brand !== "all" && size !== "all" && color !== "all") {
         const response = await displayFilteredByBrandColorSize(brand, color, size);
+        // console.log(response);
         res.render("allshoes", { response });
       } else if (brand !== "all" && color !== "all") {
         const response = await displayFilteredByBrandColor(brand, color)
@@ -263,10 +293,12 @@ export default function render() {
     }
   }
 
+  let userName = ''
   async function loginLogic(req, res, next) {
     try {
       const username = req.body.username;
       const password = req.body.password;
+      userName = username;
 
       let role = await queryFunction.login(username, password)
 
@@ -280,9 +312,36 @@ export default function render() {
       next(error)
     }
   }
+
+  let items = ''
+  async function addToCart(req, res, next) {
+    try {
+
+      if (userName == '') {
+        res.redirect('/login')
+      } else {
+        const userId = await db.oneOrNone(
+          "SELECT id FROM users WHERE username = $1",
+          [userName]
+        );
+        let userid = userId.id;
+
+        const quantity = 1;
+        const shoeId = 3
+
+        items = await queryFunction.addToCart(userid, shoeId, quantity);
+        console.log(items);
+        res.redirect(`/shop/${userName}`);
+      }
+       
+    } catch (error) {
+      next(error)
+    }
+  }
+
   async function cart(req, res, next) {
     try {
-      res.render("cart");
+      res.render("cart", { items });
     } catch (error) {
       next(error);
     }
@@ -302,6 +361,8 @@ export default function render() {
     login,
     loginLogic,
     allShoes,
+    addToCart,
+    displayCart,
     cart,
     admin,
     getAllAPIShoes,
@@ -321,5 +382,6 @@ export default function render() {
     filterByColorAPI,
     displayFilteredByColor,
     filterShoes,
+    getCartAPI,
   };
 }

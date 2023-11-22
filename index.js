@@ -60,6 +60,7 @@ app.get("/login", mainrender.login)
 app.post("/login", mainrender.loginLogic)
 app.get("/", mainrender.allShoes)
 app.get("/shop/:username", mainrender.allShoes);
+app.post("/shop/:username", mainrender.addToCart);
 app.post("/filter", mainrender.filterShoes);
 
 app.get("/cart", mainrender.cart)
@@ -73,6 +74,7 @@ app.get("/api/shoes/brand/:brandname/size/:shoesize", mainrender.filterByBrandSi
 app.get("/api/shoes/brand/:brandname", mainrender.filterByBrandAPI)
 app.get("/api/shoes/size/:shoesize", mainrender.filterBySizeAPI)
 app.get("/api/shoes/color/:shoecolor", mainrender.filterByColorAPI)
+app.get("/api/cart", mainrender.getCartAPI)
 
 
 const PORT = process.env.PORT || 3033;

@@ -36,11 +36,10 @@ export default function query(db) {
     return role;
   }
 
-
   async function showAllShoes() {
         const shoes = await db.many("SELECT * FROM shoes")
         return shoes;
-    }
+  }
 
   async function filterByBrandColorSize(brand, color, size) {
     const BCSfilteredShoes = await db.manyOrNone("SELECT * FROM shoes WHERE brand = $1 AND color = $2 AND size = $3", [brand, color, size])
@@ -90,16 +89,34 @@ export default function query(db) {
     return colorFilteredShoes;
   }
 
+  async function addToCart(userId, shoeId, quantity) {
+    const inStock = await db.manyOrNone("SELECT instock FROM shoes WHERE shoe_id = $1", [shoeId])
+
+    if (quantity > inStock) {
+      return "Not enough items in the shop."
+    }
+
+    await db.none("INSERT INTO cart (shoe_id, user_id, quantity) VALUES ($1, $2, $3)", [shoeId, userId, quantity])
+
+    const cartItems = await db.manyOrNone(
+      "SELECT * FROM cart WHERE  user_id = $1",
+      [userId]
+    );
+    
+    return cartItems;
+  }
+
   return {
-      signup,
-      login,
-      showAllShoes,
-      filterByBrandColorSize,
-      filterByBrandColor,
-      filterByColorSize,
-      filterByBrandSize,
-      filterByBrand,
-      filterBySize,
-      filterByColor,
-    };
+    signup,
+    login,
+    showAllShoes,
+    filterByBrandColorSize,
+    filterByBrandColor,
+    filterByColorSize,
+    filterByBrandSize,
+    filterByBrand,
+    filterBySize,
+    filterByColor,
+    addToCart,
+  };
 }

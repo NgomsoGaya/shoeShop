@@ -8,9 +8,9 @@
           <div class="cart-item">
             <img src="{{image}}" alt="{{name}}" class="cart-item-image">
             <div class="cart-item-details">
-              <h3>{{name}}</h3>
-              <p>Description: {{description}}</p>
-              <p>Price: ${{price}}</p>
+              <h3>id: {{this.cart_id}}</h3>
+              <p>ShoeId: {{shoe_id}}</p>
+              <p>UserId: {{user_id}}</p>
               <p>Quantity: {{quantity}}</p>
             </div>
           </div>
@@ -20,5 +20,12 @@
   {{else}}
     <p>Your cart is empty.</p>
   {{/if}}
+</form> 
 </div>
-</form>
+<div class="cart-total">
+        <p>Total: $7000</p>
+
+        
+</div>
+      
+<button type="submit" class="checkout-button">Checkout</button>
